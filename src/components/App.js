@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import '../App.css';
+
+// TODO: Use proptips or TypeScript
+
+import PeanutList from './PeanutList';
+import Form from './Form';
 
 //import * as d3 from 'd3';
-import source from './input/example1.csv';
-import schema from './input/schema-prop.json';
+import source from '../input/example1.csv';
+import schema from '../input/schema-prop.json';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      source: "./input/example1.csv",
+      source: "../input/example1.csv",
       tableName: "PERSONAS",
       columns: [],
       concept: "Person",
@@ -128,6 +132,8 @@ class App extends Component {
         <SelectPrimayKey props={this.state.primaryKey} columns={this.state.columns} handler={this.handler}/>
         <button onClick={this.generate}>Generate</button>
         <hr/>
+        <PeanutList/>
+        <Form/>
         {peanutList}
         <hr/>
         <p style={contentStyle}>
