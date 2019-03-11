@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import '../App.css';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import '../custom.scss';
+
 
 // TODO: Use proptips or TypeScript
 
@@ -128,6 +134,44 @@ class App extends Component {
     };
     return (
       <div className="App">
+        <div className="top-inputs">
+          <div className="container">
+            <div class="row py-2">
+                <div class="col-xs-12">
+                    <label>Input schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
+                    <button class="outline-yellow">Houses-db-01.sql</button>
+                    <label>Output schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
+                    <div className="schema-select">
+                      <div className="search-group">
+                          <div className="select-wrapper"><select><option value="foaf">foaf</option></select></div>
+                          <input type="text" placeholder="select-targetted classes"/>
+                      </div>
+                      <div className="purple middle-label">or</div>
+                      <button className="full-purple">import OWL file</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+            <div class="row py-2">
+              <div className="col-xs-12 search-section">
+                <input className="searcher" placeholder="Search for a columns or a class attribute"/>
+                <div class="type-selector">
+                  <label class="checkbox-container selected">columns only
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="checkbox-container">attributes
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="checkbox-container shared">attributes
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
         <label>Primary key {this.state.primaryKey}</label>
         <SelectPrimayKey props={this.state.primaryKey} columns={this.state.columns} handler={this.handler}/>
         <button onClick={this.generate}>Generate</button>

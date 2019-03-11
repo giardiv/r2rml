@@ -1,0 +1,174 @@
+//@import '../node_modules/@ibm/plex/scss/ibm-plex.scss';
+
+$black: #4F4F4F;
+$purple: #3B0086;
+$yellow: #FFD23F;
+$red: #EE4266;
+$clear-green: #F6F9F4;
+$white: #FFF;
+$grey: #E5E5E5;
+
+$mono: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+$sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+
+
+body{
+    *{
+        font-family: $sans;
+        color: $black;
+        font-size: 14px;
+    }
+}
+
+.d-block{
+    display: block;
+}
+
+.py-1{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.py-2{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.top-inputs{
+    background: $clear-green;
+}
+
+button{
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+label{
+    font-family: $mono;
+    display: block;
+    padding: 10px 0;
+}
+
+[class^="outline-"]{
+    border-width: 1px;
+    background: transparent;
+    font-weight: normal;
+}
+
+.outline-yellow{
+    border-color: $yellow;
+}
+.full-purple{
+    background: $purple;
+    border-color: $purple;
+    color: $white;
+}
+.purple{
+    color: $purple;
+}
+
+.schema-select{
+    display: flex;
+    align-items: stretch;
+    >*{
+        height: 38px;
+    }
+    .search-group{
+        display: flex;
+        width: 100%;
+        .select-wrapper{
+            border-radius: 20px 0 0 20px;
+            background: $purple;
+            display: inline-block;
+            height: 38px;
+            border: 1px solid $purple;
+            margin-top: 0;
+            select{
+                background: transparent;
+                color: $white;
+                padding: 10px 10px;
+                height: 38px;
+                font-family: $mono;
+                font-weight: bold;
+                border: 0;
+            }
+        }
+        input{
+            border: 1px solid $purple;
+            border-radius: 0 20px 20px 0;
+            height: 38px;
+            padding: 0 15px;
+            width: 100%;
+            background: transparent;
+        }
+    }
+    .middle-label{
+        height: 40px;
+        padding: 10px 20px;
+        display: inline-block;
+    }
+    >button{
+        width: 200px;
+    }
+}
+
+.search-section{
+    width: 100%;
+    .searcher{
+        border: 1px Solid $black;
+        border-radius: 10px;
+        width: 100%;
+        padding: 5px 15px;
+        height: 50px;
+        box-sizing: border-box;
+
+        &:focus{
+            border-color: $purple;
+            outline: none !important;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none; 
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    }
+    .type-selector{
+        padding: 12px 0;
+        .checkbox-container{
+            display: inline-block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            padding: 4px 20px 0 30px;
+            .checkmark{
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 18px;
+                width: 18px;
+                background-color: $grey;
+                border-radius: 4px;
+                border: 1px solid $purple;
+            }
+            &.selected{
+                .checkmark{
+                    background: $purple;
+                }
+            }
+            &.shared{
+                .checkmark{
+                    background: $purple;
+                    border-color: $grey;
+                }
+            }
+        }
+    }
+}
+
