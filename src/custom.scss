@@ -1,174 +1,389 @@
 //@import '../node_modules/@ibm/plex/scss/ibm-plex.scss';
 
-$black: #4F4F4F;
-$purple: #3B0086;
-$yellow: #FFD23F;
-$red: #EE4266;
-$clear-green: #F6F9F4;
-$white: #FFF;
-$grey: #E5E5E5;
+$black: #4f4f4f;
+$purple: #3b0086;
+$yellow: #ffd23f;
+$red: #ee4266;
+$clear-green: #f6f9f4;
+$white: #fff;
+$grey: #e5e5e5;
 
-$mono: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
-$sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+$light-purple: rgba($purple, 0.3);
+$very-light-purple: rgba($purple, 0.03);
 
+$light-red: rgba($red, 0.3);
+$very-light-red: rgba($red, 0.03);
 
-body{
-    *{
-        font-family: $sans;
-        color: $black;
-        font-size: 14px;
+$mono: "IBM Plex Mono", "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
+$sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+
+$base-radius: 10px;
+
+body {
+  * {
+    font-family: $sans;
+    color: $black;
+    font-size: 14px;
+  }
+}
+
+.d-block {
+  display: block;
+}
+
+.py-1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.py-2 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.top-inputs {
+  background: $clear-green;
+}
+
+button {
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: bold;
+  &.light {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+}
+
+label {
+  font-family: $mono;
+  display: block;
+  padding: 10px 0;
+}
+
+[class^="outline-"] {
+  border-width: 1px;
+  background: transparent;
+  font-weight: normal;
+}
+
+.outline-yellow {
+  border-color: $yellow;
+}
+.outline-purple {
+  border-color: $purple;
+}
+
+.full-purple {
+  background: $purple;
+  border-color: $purple;
+  color: $white;
+}
+.bodyless{
+  background: transparent;
+  border-color: transparent;
+}
+.purple {
+  color: $purple;
+}
+.right{
+  float: right;
+}
+
+input{
+  &[type="text"]{
+    border-radius: 3px;
+    outline: none;
+    &.red{
+      &::placeholder{
+        color: $light-red;
+      }
+      &:focus{
+        box-shadow: 0 0 10px $light-red;
+      }
     }
+    &.purple{
+      &::placeholder{
+        color: $light-purple;
+      }
+      &:focus{
+        box-shadow: 0 0 10px $light-purple;
+      }
+    }
+  }
+  &.ghost{
+    border: 0;
+    &.red{
+      background: $very-light-red;
+    }
+  }
 }
 
-.d-block{
-    display: block;
+
+h3{
+  font-size: 24px;
+  margin: 0;
 }
 
-.py-1{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.py-2{
-    padding-top: 20px;
-    padding-bottom: 20px;
+h4{
+  font-size: 20px;
+  margin: 0;
 }
 
-.top-inputs{
-    background: $clear-green;
+.tag{
+  &.classic{
+    border: 1px solid $black;
+    font-style: italic;
+    padding: 1px 2px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 10px;
+    margin-right: 5px;
+  }
 }
 
-button{
-    border-radius: 20px;
-    padding: 10px;
-    font-weight: bold;
-}
+//////////////////// SCHEMA SELECT
 
-label{
-    font-family: $mono;
-    display: block;
-    padding: 10px 0;
-}
-
-[class^="outline-"]{
-    border-width: 1px;
-    background: transparent;
-    font-weight: normal;
-}
-
-.outline-yellow{
-    border-color: $yellow;
-}
-.full-purple{
-    background: $purple;
-    border-color: $purple;
-    color: $white;
-}
-.purple{
-    color: $purple;
-}
-
-.schema-select{
+.schema-select {
+  display: flex;
+  align-items: stretch;
+  > * {
+    height: 38px;
+  }
+  .search-group {
     display: flex;
-    align-items: stretch;
-    >*{
-        height: 38px;
-    }
-    .search-group{
-        display: flex;
-        width: 100%;
-        .select-wrapper{
-            border-radius: 20px 0 0 20px;
-            background: $purple;
-            display: inline-block;
-            height: 38px;
-            border: 1px solid $purple;
-            margin-top: 0;
-            select{
-                background: transparent;
-                color: $white;
-                padding: 10px 10px;
-                height: 38px;
-                font-family: $mono;
-                font-weight: bold;
-                border: 0;
-            }
-        }
-        input{
-            border: 1px solid $purple;
-            border-radius: 0 20px 20px 0;
-            height: 38px;
-            padding: 0 15px;
-            width: 100%;
-            background: transparent;
-        }
-    }
-    .middle-label{
-        height: 40px;
-        padding: 10px 20px;
-        display: inline-block;
-    }
-    >button{
-        width: 200px;
-    }
-}
-
-.search-section{
     width: 100%;
-    .searcher{
-        border: 1px Solid $black;
-        border-radius: 10px;
-        width: 100%;
-        padding: 5px 15px;
-        height: 50px;
-        box-sizing: border-box;
-
-        &:focus{
-            border-color: $purple;
-            outline: none !important;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none; 
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
+    .select-wrapper {
+      border-radius: 20px 0 0 20px;
+      background: $purple;
+      display: inline-block;
+      height: 38px;
+      border: 1px solid $purple;
+      margin-top: 0;
+      select {
+        background: transparent;
+        color: $white;
+        padding: 10px 10px;
+        height: 38px;
+        font-family: $mono;
+        font-weight: bold;
+        border: 0;
+      }
     }
-    .type-selector{
-        padding: 12px 0;
-        .checkbox-container{
-            display: inline-block;
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            padding: 4px 20px 0 30px;
-            .checkmark{
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 18px;
-                width: 18px;
-                background-color: $grey;
-                border-radius: 4px;
-                border: 1px solid $purple;
-            }
-            &.selected{
-                .checkmark{
-                    background: $purple;
-                }
-            }
-            &.shared{
-                .checkmark{
-                    background: $purple;
-                    border-color: $grey;
-                }
-            }
-        }
+    input {
+      border: 1px solid $purple;
+      border-radius: 0 20px 20px 0;
+      height: 38px;
+      padding: 0 15px;
+      width: 100%;
+      background: transparent;
     }
+  }
+  .middle-label {
+    height: 40px;
+    padding: 10px 20px;
+    display: inline-block;
+  }
+  > button {
+    width: 200px;
+  }
 }
 
+//////////////////// SEARCHER
+
+$input-br: $base-radius;
+
+.search-section {
+  width: 100%;
+  .searcher {
+    display: flex;
+    &:focus-within {
+      box-shadow: 0 0 10px $light-purple;
+      border-radius: $input-br;
+    }
+    .input {
+      border: 1px Solid $purple;
+      border-radius: $input-br;
+      width: 100%;
+      padding: 5px 15px;
+      height: 50px;
+      box-sizing: border-box;
+      display: inline-block;
+      &:focus {
+        outline: none !important;
+        & ~ .peanut-filter {
+          border-width: 2px;
+        }
+      }
+    }
+    .peanut-filter {
+      display: inline-block;
+      background: $very-light-purple;
+      padding: 6px 34px 6px 12px;
+      position: relative;
+      height: 36px;
+      border: 1px solid $purple;
+      border-right: 0;
+      border-radius: $input-br 0 0 $input-br;
+      //min-width: 200px;
+      .label {
+        color: $light-purple;
+        width: max-content;
+      }
+      .value {
+        color: $purple;
+        font-weight: bold;
+        font-family: $mono;
+      }
+      svg {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin-top: -6px;
+        path {
+          color: $purple;
+        }
+      }
+    }
+    &.peanut-filtered {
+      .input {
+        border-radius: 0 $input-br $input-br 0;
+        border-left: 0;
+      }
+    }
+  }
+  .type-selector {
+    padding: 12px 0;
+    .checkbox-container {
+      display: inline-block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      padding: 0px 20px 0 24px;
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 16px;
+        width: 16px;
+        background-color: $grey;
+        border-radius: 4px;
+        border: 1px solid $purple;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
+      &.selected {
+        .checkmark {
+          background: $purple;
+        }
+      }
+      &.shared {
+        .checkmark {
+          background: $purple;
+          border-color: $grey;
+          border-width: 2px;
+          height: 18px;
+          width: 18px;
+
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+        }
+      }
+    }
+  }
+}
+
+//////////////////// PEANUTS
+
+$peanut-padding: 20px;
+
+.peanut {
+  background: $very-light-purple;
+  border-radius: $base-radius;
+  width: 100%;
+  margin-bottom: 20px;
+  .overview {
+    padding: $peanut-padding;
+    > div {
+      &:last-child {
+        text-align: right;
+      }
+      h3 {
+        font-size: 24px;
+        margin: 0;
+        button {
+          margin: -5px 14px;
+        }
+      }
+      .tag {
+        border: 1px solid $black;
+        font-style: italic;
+        padding: 1px 2px;
+        border-radius: 4px;
+        display: inline-block;
+        font-size: 10px;
+      }
+    }
+  }
+  footer {
+    padding: $peanut-padding;
+    border-top: 2px solid $white;
+  }
+}
+
+
+//////////////////// ASIDE
+
+$aside-width: 360px;
+$aside-padding: 16px;
+
+aside{
+
+  display: none;
+
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow: scroll;
+  width: $aside-width;
+  background: $white;
+  border-left: 1px Solid $red;
+  header{
+    padding: $aside-padding;
+    h3{
+      margin: 0;
+      color: $red;
+      font-size: 30px;
+      .tag{
+        background: $red;
+        padding: 2px 4px;
+        border-radius: 4px;
+        display: inline-block;
+        font-family: $mono;
+        color: $white;
+      }
+    }
+    input{
+      display: block;
+      padding: 4px;
+      color: $red;
+      width: 100%;
+      width: -moz-available;          /* WebKit-based browsers will ignore this. */
+      width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+      width: fill-available;
+      margin: 12px 0;
+    }
+  }
+  section{
+    >div{
+      padding: $aside-padding;
+      border-top: 1px solid $light-red;
+      &:last-child{
+        border-bottom: 1px solid $light-red; 
+      }
+    }
+  }
+}
