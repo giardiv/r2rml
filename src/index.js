@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import stores from './RootStore';
+import { Provider } from 'mobx-react';
 
-import { Provider } from "react-redux";
-import store from "./store/index";
+//import { Provider } from "react-redux";
+//import store from "./store/index";
 //import App from "./components/App.jsx";
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider stores={stores}>
         <App />
     </Provider>,
     document.getElementById('root')

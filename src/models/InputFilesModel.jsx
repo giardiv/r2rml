@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx'
+import { observable, action, toJS } from 'mobx'
 import uuid from 'uuid/v4'
 
 class InputFilesModel {
@@ -6,16 +6,21 @@ class InputFilesModel {
         this.rootStore = rootStore
     }
 
-    @observable files = [];
+    @observable files = [
+        {
+            name: "test"
+        }
+    ];
 
-    @action addFile(file) {
+    @action addFileInput(file) {
         this.files.push({
             id: uuid(),
-            file: { file }
+            name: file.name
         })
+        console.log(toJS(this.getInputFiles()));
     }
 
-    getFiles() {
+    getInputFiles() {
         return this.files;
     }
 }

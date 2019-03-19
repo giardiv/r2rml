@@ -2,11 +2,13 @@ import React from 'react';
 
 import { faQuestionCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { observer } from 'mobx-react';
 
+@observer
 class IOManagerView extends React.Component {
 
     render() {
-        const { inputFiles } = this.props;
+        const { inputFiles, testHandler } = this.props;
 
         return (
             <div className="top-inputs">
@@ -15,7 +17,6 @@ class IOManagerView extends React.Component {
                         <div class="col-xs-12">
                             <label>Input schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
                             {inputFiles.map( (file) =>  <button class="outline-yellow">{file.name}</button>)}
-                            <button class="outline-yellow"></button>
                             <label>Output schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
                             <div className="schema-select">
                                 <div className="search-group">
@@ -27,7 +28,7 @@ class IOManagerView extends React.Component {
                                     <input type="text" placeholder="select-targetted classes" />
                                 </div>
                                 <div className="purple middle-label">or</div>
-                                <button className="full-purple">import OWL file</button>
+                                <button className="full-purple" onClick={testHandler}>import OWL file</button>
                             </div>
                         </div>
                     </div>

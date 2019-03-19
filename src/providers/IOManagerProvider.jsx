@@ -1,15 +1,15 @@
 import React from 'react'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import IOManagerController from '../viewcontrollers/IOManagerController'
 import InputFilesViewModel from '../viewmodels/InputFilesViewModel'
-import RootStore from '../RootStore'
 
-@inject(RootStore.type.INPUT_FILE_MODEL)
+@inject( 'stores' )
+@observer
 class IOManagerProvider extends React.Component {
     constructor(props) {
         super(props)
-        const ifModel = props[RootStore.type.INPUT_FILE_MODEL]
-        this.viewModel = new InputFilesViewModel(ifModel)
+        const InputFilesStore = props.stores.InputFilesStore
+        this.viewModel = new InputFilesViewModel(InputFilesStore)
     }
 
     render() {

@@ -10,13 +10,13 @@ const mapStateToProps = state => {
 const ConnectedList = ({mappings}) => (
   <div>
     <h2>PeanutList</h2>
-    {mappings.map(mapping => (
+    {/* {mappings.map(mapping => (
       <Peanut column={mapping.title}/>
-    ))}
+    ))} */}
     <hr/>
   </div>
 );
 
-const PeanutList = connect(mapStateToProps)(ConnectedList);
+const PeanutList = ConnectedList;//connect(mapStateToProps)(ConnectedList);
 
 export default PeanutList;

@@ -3,11 +3,11 @@ class InputFilesViewModel {
         this.store = fileInputStore
     }
 
-    getFileInputs() {
-        return this.store.getFileInputs()
+    getInputFiles() {
+        return this.store.getInputFiles()
     }
 
-    addFileInput(fileInput) {
+    addInputFiles(fileInput) {
         this.store.addFileInput(fileInput)
     }
 

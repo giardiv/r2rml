@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faQuestionCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -139,7 +138,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <IOManagerProvider rootStore={new RootStore()}></IOManagerProvider>
+        <IOManagerProvider></IOManagerProvider>
         <div className="top-inputs">
           <div className="container">
             <div class="row py-2">
@@ -255,9 +254,9 @@ class App extends Component {
         <SelectPrimayKey props={this.state.primaryKey} columns={this.state.columns} handler={this.handler} />
         <button onClick={this.generate}>Generate</button>
         <hr />
-        <PeanutList />
+        {/* <PeanutList />
         <Form />
-        {peanutList}
+        {peanutList} */}
         <hr />
         <p style={contentStyle}>
           {this.state.content}

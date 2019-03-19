@@ -10,6 +10,10 @@ class FileInputsStore {
             file: file
         });
     }
+
+    getInputFiles(){
+        return this.fileInputs;
+    }
 }
 
 const FileInputsStore = new FileInputsStore();
