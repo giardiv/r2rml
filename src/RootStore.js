@@ -1,27 +1,11 @@
 import InputFilesModel from './models/InputFilesModel'
+import MappingsModel from './models/MappingsModel'
 
 const stores = {
-    InputFilesStore: new InputFilesModel()
+    InputFilesStore: new InputFilesModel(),
+    MappingsStore: new MappingsModel()
 }
 
-//class RootStore {
-
-
-// type = {
-//     INPUT_FILE_MODEL: 'input_file_model'
-// };
-
-// stores = [];
-
-// constructor() {
-
-//     this.stores[this.INPUT_FILE_MODEL] = new InputFilesModel(this);
-// }
-
-// get(storeName){
-//     return this.stores[storeName];
-// }
-//}
 
 export default {
     ...stores

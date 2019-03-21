@@ -6,9 +6,20 @@ import { observer } from 'mobx-react';
 
 @observer
 class IOManagerView extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.openFileBrowser = this.openFileBrowser.bind(this);
+    }
+
+
+    openFileBrowser(e){
+        const input = this.fileInput;
+        input.click();
+    }
 
     render() {
-        const { inputFiles, testHandler } = this.props;
+        const { inputFiles, handleFileChosen, openFileBrowser, testHandler } = this.props;
 
         return (
             <div className="top-inputs">
@@ -16,7 +27,13 @@ class IOManagerView extends React.Component {
                     <div class="row py-2">
                         <div class="col-xs-12">
                             <label>Input schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
-                            {inputFiles.map( (file) =>  <button class="outline-yellow">{file.name}</button>)}
+                            {inputFiles.map((file) => <button class="outline-yellow">{file.name}</button>)}
+                            {inputFiles.length == 0 &&
+                                <div onClick={this.openFileBrowser}>
+                                    <button className="full-purple">Import CSV file</button>
+                                    <input ref={input => this.fileInput = input} type="file" onChange={handleFileChosen} className="d-none" />
+                                </div>
+                            }
                             <label>Output schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
                             <div className="schema-select">
                                 <div className="search-group">

@@ -1,11 +1,11 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import IOManagerController from '../viewcontrollers/IOManagerController'
 import InputFilesViewModel from '../viewmodels/InputFilesViewModel'
+import ColumnsReaderController from '../viewcontrollers/ColumnsReaderController'
 
 @inject( 'stores' )
 @observer
-class IOManagerProvider extends React.Component {
+class ColumnsReaderProvider extends React.Component {
     constructor(props) {
         super(props)
         const InputFilesStore = props.stores.InputFilesStore
@@ -14,9 +14,9 @@ class IOManagerProvider extends React.Component {
 
     render() {
         return (
-            <IOManagerController inputFiles={this.inputFilesViewModel}/>
+            <ColumnsReaderController inputFiles={this.inputFilesViewModel}/>
         )
     }
 }
 
-export default IOManagerProvider
+export default ColumnsReaderProvider

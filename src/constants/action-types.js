@@ -1,1 +1,0 @@
-export const ADD_MAPPING = "ADD_MAPPING";

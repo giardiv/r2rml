@@ -18,6 +18,7 @@ import Form from './Form';
 //import * as d3 from 'd3';
 import source from '../input/example1.csv';
 import schema from '../input/schema-prop.json';
+import ColumnsReaderProvider from '../providers/ColumnsReaderProvider';
 
 class App extends Component {
   constructor(props) {
@@ -131,37 +132,15 @@ class App extends Component {
     const peanutList = this.state.columns.map(function (column) {
       return <Peanut column={column} properties={_this.state.properties} selectHandler={_this.selectHandler} />
     });
-    const contentStyle = {
-      whiteSpace: "pre-line",
-      textAlign: "left"
-    };
+
+
     return (
       <div className="App">
-
         <IOManagerProvider></IOManagerProvider>
-        <div className="top-inputs">
-          <div className="container">
-            <div class="row py-2">
-              <div class="col-xs-12">
-                <label>Input schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
-                <button class="outline-yellow">Houses-db-01.sql</button>
-                <label>Output schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
-                <div className="schema-select">
-                  <div className="search-group">
-                    <div className="select-wrapper">
-                      <select>
-                        <option value="foaf">foaf</option>
-                      </select>
-                    </div>
-                    <input type="text" placeholder="select-targetted classes" />
-                  </div>
-                  <div className="purple middle-label">or</div>
-                  <button className="full-purple">import OWL file</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+
+
+
         <div className="container">
           <div class="row py-2">
             <div className="col-xs-12 search-section">
@@ -216,7 +195,10 @@ class App extends Component {
           </div>
 
         </div>
-        <aside>
+
+        <ColumnsReaderProvider></ColumnsReaderProvider>
+
+        <aside className="class-reader">
           <header>
             <h3>Place <span className="tag">foaf</span></h3>
             <input type="text" className="ghost red" placeholder="search for a property or a type" />
@@ -231,7 +213,7 @@ class App extends Component {
               <h4>address</h4>
               <span className="tag classic">Address</span><span className="tag classic">Text</span>
               <p>
-              An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs.
+                An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs.
               </p>
             </div>
             <div>
@@ -258,7 +240,7 @@ class App extends Component {
         <Form />
         {peanutList} */}
         <hr />
-        <p style={contentStyle}>
+        <p>
           {this.state.content}
         </p>
       </div >

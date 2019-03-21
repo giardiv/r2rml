@@ -6,16 +6,13 @@ class InputFilesModel {
         this.rootStore = rootStore
     }
 
-    @observable files = [
-        {
-            name: "test"
-        }
-    ];
+    @observable files = [];
 
     @action addFileInput(file) {
         this.files.push({
             id: uuid(),
-            name: file.name
+            name: file.name,
+            columns: file.columns
         })
         console.log(toJS(this.getInputFiles()));
     }

@@ -6,10 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import stores from './RootStore';
 import { Provider } from 'mobx-react';
 
-//import { Provider } from "react-redux";
-//import store from "./store/index";
-//import App from "./components/App.jsx";
-
 ReactDOM.render(
     <Provider stores={stores}>
         <App />

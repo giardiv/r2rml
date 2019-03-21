@@ -30,6 +30,9 @@ body {
 .d-block {
   display: block;
 }
+.d-none {
+  display: none;
+}
 
 .py-1 {
   padding-top: 10px;
@@ -44,7 +47,7 @@ body {
   background: $clear-green;
 }
 
-button {
+button, input[type=file] {
   border-radius: 20px;
   padding: 10px;
   font-weight: bold;
@@ -339,18 +342,20 @@ $peanut-padding: 20px;
 $aside-width: 360px;
 $aside-padding: 16px;
 
-aside{
-
+.class-reader{
   display: none;
 
-  position: fixed;
   right: 0;
+  border-left: 1px Solid $red;
+}
+
+aside{
+  position: fixed;
   top: 0;
   height: 100%;
   overflow: scroll;
   width: $aside-width;
   background: $white;
-  border-left: 1px Solid $red;
   header{
     padding: $aside-padding;
     h3{
@@ -386,4 +391,10 @@ aside{
       }
     }
   }
+}
+
+
+.columns-reader{  
+  left: 0;
+  border-left: 1px Solid $yellow;
 }
