@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IOManagerView from '../views/IOManagerView';
+import PeanutCreatorView from '../views/PeanutCreatorView'
 import { observer } from 'mobx-react';
 
 @observer
@@ -11,7 +11,7 @@ class PeanutCreatorController extends React.Component {
 
     render() {
         return (
-            <IOManagerView/>
+            <PeanutCreatorView/>
         )
     }
 }
