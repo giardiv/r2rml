@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { faQuestionCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { observer } from 'mobx-react';
 
@@ -12,22 +12,22 @@ class IOManagerView extends React.Component {
         this.openFileBrowser = this.openFileBrowser.bind(this);
     }
 
-
     openFileBrowser(e){
         const input = this.fileInput;
         input.click();
     }
 
     render() {
-        const { inputFiles, handleFileChosen, openFileBrowser, testHandler } = this.props;
+        const { inputFiles, leftIsActive, handleFileChosen, activeLeft } = this.props;
 
+        console.log(inputFiles);
         return (
-            <div className="top-inputs">
-                <div className="container">
-                    <div class="row py-2">
-                        <div class="col-xs-12">
-                            <label>Input schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
-                            {inputFiles.map((file) => <button class="outline-yellow">{file.name}</button>)}
+            <div className={"top-inputs " + (leftIsActive ? " left-active" : "")}>
+                <div className={ leftIsActive ? "container-fluid" : "container"}>
+                    <div className="row py-2">
+                        <div className="col-xs-12">
+                            <label>{leftIsActive + " "} Input schemas <FontAwesomeIcon icon={faQuestionCircle} /></label>
+                            {inputFiles.map((file) => <button className="outline-yellow" onClick={activeLeft}>{file.name}</button>)}
                             {inputFiles.length == 0 &&
                                 <div onClick={this.openFileBrowser}>
                                     <button className="full-purple">Import CSV file</button>
@@ -45,7 +45,7 @@ class IOManagerView extends React.Component {
                                     <input type="text" placeholder="select-targetted classes" />
                                 </div>
                                 <div className="purple middle-label">or</div>
-                                <button className="full-purple" onClick={testHandler}>import OWL file</button>
+                                <button className="full-purple">import OWL file</button>
                             </div>
                         </div>
                     </div>

@@ -19,6 +19,16 @@ $sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
 
 $base-radius: 10px;
 
+
+//////////////////// ASIDE
+
+$aside-width: 360px;
+$aside-padding: 16px;
+
+
+
+
+
 body {
   * {
     font-family: $sans;
@@ -45,6 +55,9 @@ body {
 
 .top-inputs {
   background: $clear-green;
+  &.left-active{
+    padding-left: $aside-width;
+  }
 }
 
 button, input[type=file] {
@@ -339,23 +352,23 @@ $peanut-padding: 20px;
 
 //////////////////// ASIDE
 
-$aside-width: 360px;
-$aside-padding: 16px;
-
 .class-reader{
-  display: none;
 
   right: 0;
   border-left: 1px Solid $red;
 }
 
 aside{
+  display: none;
   position: fixed;
   top: 0;
   height: 100%;
   overflow: scroll;
   width: $aside-width;
   background: $white;
+  &.active{
+    display: block;
+  }
   header{
     padding: $aside-padding;
     h3{
@@ -391,10 +404,18 @@ aside{
       }
     }
   }
+  >.fa-times{
+    position: absolute;
+    right: $aside-padding;
+    top: $aside-padding;
+    path {
+      color: $red;
+    }
+  }
 }
 
 
-.columns-reader{  
+.columns-reader{
   left: 0;
-  border-left: 1px Solid $yellow;
+  border-right: 1px Solid $red;
 }
