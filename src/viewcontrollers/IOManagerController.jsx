@@ -2,20 +2,36 @@ import React from 'react';
 
 import IOManagerView from '../views/IOManagerView';
 import { observer } from 'mobx-react';
+import SchemaOrgReader from '../ontologyreaders/SchemaOrgReader';
 
 const CSV_SEPARATOR = ",";
 
 @observer
 class IOManagerController extends React.Component {
+    reader = null;
+
     constructor(props){
         super(props);
         this.state = {
-            displayed: true
+            displayed: true,
+            searchTarget: {
+                piece: null,
+                values: null
+            }
         }
 
         this.handleFileChosen = this.handleFileChosen.bind(this);
+        this.handleTargetSearch = this.handleTargetSearch.bind(this);
+        this.cleanInput = this.cleanInput.bind(this);
         this.activeLeft = this.activeLeft.bind(this);
+        this.selectTarget = this.selectTarget.bind(this);
     }
+
+    componentDidMount() {
+        this.reader = new SchemaOrgReader();
+        this.reader.init();
+    }
+    
 
     handleFileChosen(e) {
         const _this = this;
@@ -46,18 +62,46 @@ class IOManagerController extends React.Component {
         filereader.readAsText(file);
     }
 
-    activeLeft(){
+    handleTargetSearch(e) {
+        this.setState({
+            searchTarget: {
+                piece: e.target.value,
+                values: this.reader.getClassByPiece(e.target.value)
+            }
+        })
+    }
+
+    activeLeft(e){
+        console.log("bppù");
         this.props.UI.activeLeft();
     }
 
+    cleanInput(){
+        this.setState({searchTarget: {
+            piece: null,
+            values: null
+        }})
+    }
+    
+    selectTarget = targetName => e => {
+        this.props.targetClass.addTargetClass(this.reader.getClass(targetName));
+        this.cleanInput();
+    }
+
     render() {
-        const { inputFiles, UI } = this.props;
+        const { inputFiles, targetClass, UI } = this.props;
         return (
             <IOManagerView 
                 inputFiles={inputFiles.getInputFiles()}
+                targetClass={targetClass.getClasses()}
                 leftIsActive={UI.leftState()}
+                searchTargets={this.state.searchTarget}
 
                 handleFileChosen={this.handleFileChosen}
+                handleTargetSearch={this.handleTargetSearch}
+                selectTarget={this.selectTarget}
+
+                cleanInput={this.cleanInput}
                 activeLeft={this.activeLeft}
             />
         )

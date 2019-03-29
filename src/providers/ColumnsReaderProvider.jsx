@@ -17,6 +17,7 @@ class ColumnsReaderProvider extends React.Component {
     }
 
     render() {
+        console.log(this.UIViewModel.leftState());
         return (
             <ColumnsReaderController inputFiles={this.inputFilesViewModel} UI={this.UIViewModel}/>
         )

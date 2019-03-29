@@ -21,6 +21,9 @@ import schema from '../input/schema-prop.json';
 import ColumnsReaderProvider from '../providers/ColumnsReaderProvider';
 import PeanutCreatorProvider from '../providers/PeanutCreatorProvider';
 
+import SchemaOrgReader from '../ontologyreaders/SchemaOrgReader';
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,8 +43,13 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+
+
+    // OLD CODE >
     this.mapSource();
     this.getProperties(this.state.concept)
+    // < OLD CODE
   }
 
 
@@ -124,7 +132,6 @@ class App extends Component {
 
     const newState = Object.assign({}, this.state, { mappings: mappings });
     this.setState(newState);
-    console.log(this.state);
   }
 
   render() {

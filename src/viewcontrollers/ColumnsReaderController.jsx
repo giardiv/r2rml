@@ -15,14 +15,14 @@ class ColumnsReaderController extends React.Component {
         this.props.UI.disableLeft();
     }
 
+
     render() {
         const { inputFiles, UI } = this.props;
         return (
             <ColumnsReaderView
                 inputFiles={inputFiles.getInputFiles()} 
                 isActive={UI.leftState()}
-
-                disable={this.disable}
+                disable={() => this.disable}
             />
         )
     }

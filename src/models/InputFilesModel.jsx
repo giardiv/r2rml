@@ -14,7 +14,6 @@ class InputFilesModel {
             name: file.name,
             columns: file.columns
         })
-        //console.log(toJS(this.getInputFiles()));
     }
 
     getInputFiles() {

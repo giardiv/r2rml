@@ -41,7 +41,6 @@ class ColumnsReaderView extends React.Component {
 
 
         return(
-
             <aside className={ "columns-reader" + ( this.props.isActive ? " active": "")} >
                 <FontAwesomeIcon icon={faTimes} className="closer" onClick={this.props.disable()}/>
                 { getList()}

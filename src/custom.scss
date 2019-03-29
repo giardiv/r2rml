@@ -1,6 +1,7 @@
 //@import '../node_modules/@ibm/plex/scss/ibm-plex.scss';
 
 $black: #4f4f4f;
+$dark-black: #202020;
 $purple: #3b0086;
 $yellow: #ffd23f;
 $red: #ee4266;
@@ -13,6 +14,10 @@ $very-light-purple: rgba($purple, 0.03);
 
 $light-red: rgba($red, 0.3);
 $very-light-red: rgba($red, 0.03);
+
+$very-light-yellow: rgba($yellow, 0.07);
+
+$light-gray: #E0E0E0;
 
 $mono: "IBM Plex Mono", "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
 $sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
@@ -41,7 +46,7 @@ body {
   display: block;
 }
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .py-1 {
@@ -68,6 +73,7 @@ button, input[type=file] {
     padding: 3px 6px;
     font-size: 12px;
   }
+  cursor: pointer;
 }
 
 label {
@@ -87,6 +93,7 @@ label {
 }
 .outline-purple {
   border-color: $purple;
+  color: $purple;
 }
 
 .full-purple {
@@ -168,6 +175,19 @@ h4{
   .search-group {
     display: flex;
     width: 100%;
+    position: relative;
+    &.expanded{
+      .search-result{
+        display: block;
+      }
+      input{
+        border-radius: 0 20px 0 0;
+        background: $white;
+      }
+      .select-wrapper {
+        border-radius: 20px 0 0 0;
+      }
+    }
     .select-wrapper {
       border-radius: 20px 0 0 20px;
       background: $purple;
@@ -184,6 +204,7 @@ h4{
         font-weight: bold;
         border: 0;
       }
+      z-index: 960;
     }
     input {
       border: 1px solid $purple;
@@ -192,6 +213,83 @@ h4{
       padding: 0 15px;
       width: 100%;
       background: transparent;
+      z-index: 950;
+      &:focus{
+        background: $white;
+      }
+    }
+    .cleaner{
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      z-index: 965;
+      path{
+        fill: $purple;
+      }
+    }
+    .search-result{
+      display: none;
+      position: absolute;
+      width: 100%;
+      border: 1px solid $purple;
+      border-radius: 0 0 $base-radius $base-radius;
+      background: $white;
+      z-index: 900;
+      box-sizing: border-box;
+      margin-top: 39px;
+      max-height: calc(100vh - 200px);
+      overflow: scroll;
+      .no-result{
+        text-align: center;
+        padding: 15px;
+        color: $light-purple;
+      }
+      .item{
+        width: 100%;
+        padding: 12px;
+        height: 44px;
+        box-sizing: border-box;
+        border-bottom: 1px solid $light-purple;
+        &:hover{
+          background: $very-light-purple;
+          cursor: pointer;
+        }
+        &:last-child{
+          border-bottom: none;
+        }
+        h5{
+          margin: 2px 0;
+          position: absolute;
+          font-weight: normal;
+          color: $purple;
+          b{
+            color: $purple;
+          }
+        }
+        .tag{
+          float: right;
+          padding: 2px 3px;
+          border-radius: 3px;
+          background: $very-light-purple;
+          color: $purple;
+          margin-right: 4px;
+        }
+        >svg, >a>svg{
+          float: right;
+          margin: 4px 3px 0 0;
+          path{
+            fill: $purple;
+          }
+        }
+        >a>svg{
+          margin-left: 15px;
+        }
+        >a:hover{
+          >svg{
+            margin-top: 2px;
+          }
+        }
+      }
     }
   }
   .middle-label {
@@ -212,9 +310,19 @@ $input-br: $base-radius;
   width: 100%;
   .searcher {
     display: flex;
+    position: relative;
     &:focus-within {
       box-shadow: 0 0 10px $light-purple;
       border-radius: $input-br;
+    }
+    &.expanded{
+      border-radius: $input-br $input-br 0 0;
+      .search-results{
+        display: block;
+      }
+      input{
+        border-radius: $input-br $input-br 0 0;
+      }
     }
     .input {
       border: 1px Solid $purple;
@@ -231,6 +339,96 @@ $input-br: $base-radius;
         }
       }
     }
+
+    .search-results{
+      display: none;
+      position: absolute;
+      width: 100%;
+      border: 1px solid $purple;
+      border-radius: 0 0 $base-radius $base-radius;
+      background: $white;
+      z-index: 900;
+      box-sizing: border-box;
+      margin-top: 49px;
+      max-height: calc(100vh - 300px);
+      overflow: scroll;
+      .no-result{
+        text-align: center;
+        padding: 15px;
+        color: $light-gray;
+      }
+      .item{
+        width: 100%;
+        padding: 12px;
+        height: 44px;
+        box-sizing: border-box;
+        border-bottom: 1px solid $light-gray;
+        color: $black;
+        &.property{
+          &:hover{
+            background: $very-light-purple;
+            cursor: pointer;
+          }
+          .tag{
+            background: $purple;
+            color: $white;
+          }
+        }
+        &.column{
+          &:hover{
+            background: $very-light-yellow;
+            cursor: pointer;
+          }
+          .tag{
+            background: $yellow;
+            color: $dark-black;
+          }
+        }
+        .column{
+            &:hover{
+            background: $very-light-yellow;
+            cursor: pointer;
+          }
+        }
+        &:last-child{
+          border-bottom: none;
+        }
+        h5{
+          margin: 2px 0;
+          position: absolute;
+          font-weight: normal;
+          color: $dark-black;
+          b{
+            color: $purple;
+          }
+          .type{
+            padding: 3px 5px;
+            border: 1px solid $dark-black;
+            border-radius: 3px;
+
+            &:first-of-type{
+              border-top-left-radius: 3px;
+              border-bottom-left-radius: 3px;
+            }
+            &:last-of-type{
+              border-top-right-radius: 3px;
+              border-bottom-right-radius: 3px;
+              margin-right: 10px;
+            }
+          }
+        }
+        .tag{
+          float: right;
+          padding: 3px 5px;
+          border-radius: 3px;
+          background: $very-light-purple;
+          color: $purple;
+          margin-right: 4px;
+          font-family: $mono;
+        }
+      }
+    }
+
     .peanut-filter {
       display: inline-block;
       background: $very-light-purple;
